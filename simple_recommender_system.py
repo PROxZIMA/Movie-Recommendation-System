@@ -72,7 +72,7 @@ md.head()
 # In[10]:
 
 gen_md = md.explode("genres")
-genres_list = gen_md["genres"].unique()
+genres_list = gen_md[gen_md["genres"].notna()].genres.unique()
 
 
 # In[11]:
@@ -87,6 +87,11 @@ def genres() -> np.ndarray:
 
 def build_chart(genre, n, percentile=0.85):
     df = gen_md[gen_md["genres"] == genre]
+    if df.shape[0] <= 1:
+        return pd.DataFrame(
+            columns=["Title", "Year", "Vote Count", "Vote Average", "Weight Rate"]
+        )
+
     vote_counts = df[df["vote_count"].notnull()]["vote_count"].astype("int")
     vote_averages = df[df["vote_average"].notnull()]["vote_average"].astype("int")
     C = vote_averages.mean()
@@ -106,6 +111,17 @@ def build_chart(genre, n, percentile=0.85):
         axis=1,
     )
     qualified = qualified.sort_values("wr", ascending=False).head(25)
+
+    qualified.rename(
+        columns={
+            "title": "Title",
+            "year": "Year",
+            "vote_count": "Vote Count",
+            "vote_average": "Vote Average",
+            "wr": "Weight Rate",
+        },
+        inplace=True,
+    )
 
     return qualified.head(n)
 

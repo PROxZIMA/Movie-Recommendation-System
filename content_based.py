@@ -177,6 +177,17 @@ def get_recommendations(title, n, percentile=0.5):
     )
     qualified = qualified.sort_values("vote_average", ascending=False).head(25)
 
+    qualified.rename(
+        columns={
+            "title": "Title",
+            "year": "Year",
+            "vote_count": "Vote Count",
+            "vote_average": "Vote Average",
+            "wr": "Weight Rate",
+        },
+        inplace=True,
+    )
+
     return qualified.head(n)
 
 
