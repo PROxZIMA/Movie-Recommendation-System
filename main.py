@@ -30,7 +30,7 @@ if recommendation_type == "Hollywood Genre Based":
     st.dataframe(build_chart(genre_selected, count1))
     st.text(" ")
     st.write(
-        "You can find the dataset & analysis .py file for the above analysis [here](https://drive.google.com/drive/folders/1AjFdtPMa-_4N8pJMV74ATukujDFSg_k_?usp=sharing)"
+        "You can find the dataset & analysis.py file for the above analysis [here](https://github.com/PROxZIMA/Movie-Recommendation-System/)"
     )
 
 elif recommendation_type == "Movie Based":
@@ -46,12 +46,13 @@ elif recommendation_type == "Movie Based":
         step=1,
     )
     st.dataframe(get_recommendations(title, count2))
+    st.text(" ")
     st.write(
-        "You can find the dataset & analysis .py file for the above analysis [here](https://drive.google.com/drive/folders/1Xz9dLomsYNZe5L90ANHDYEsdrsczhRrT?usp=sharing)"
+        "You can find the dataset & analysis.py file for the above analysis [here](https://github.com/PROxZIMA/Movie-Recommendation-System/)"
     )
-    st.sidebar.text(" ")
-    st.sidebar.text("PS - Please enter the movie title correctly.")
-    st.sidebar.text("If error occurs, check for spelling & try again.")
+    st.write(" ")
+    st.write("PS - Please enter the movie title correctly.")
+    st.write("If error occurs, check for spelling & try again.")
 
 else:
     genre_selected_2 = st.sidebar.selectbox(
@@ -72,3 +73,7 @@ else:
     )
     st.text(" ")
     st.dataframe(indian_genre_based(genre_selected_2, lang_selected, count3))
+    st.text(" ")
+    st.write(
+        "You can find the dataset & analysis.py file for the above analysis [here](https://github.com/PROxZIMA/Movie-Recommendation-System/)"
+    )
