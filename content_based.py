@@ -156,7 +156,7 @@ def get_recommendations(title, n, percentile=0.5):
     sim_scores = sim_scores[1:31]
     movie_indices = [i[0] for i in sim_scores]
 
-    df = smd.iloc[movie_indices].head(n)
+    df = smd.iloc[movie_indices]
     vote_counts = df[df["vote_count"].notnull()]["vote_count"].astype("int")
     vote_averages = df[df["vote_average"].notnull()]["vote_average"].astype("int")
     C = vote_averages.mean()
